@@ -20,6 +20,7 @@ class Basics extends Phaser.Scene {
 
         // add sprites
         let tomato = this.add.sprite(centerX, centerY, 'fruitandveg', 'tomato')
+        let verygoodpear = this.add.sprite(64, 64, "fruitandveg", "pear")
 
         // add text
         this.instructionText = this.add.bitmapText(centerX, centerY, 'gem_font', '', 24).setOrigin(0.5)
@@ -47,6 +48,55 @@ class Basics extends Phaser.Scene {
             onComplete: () => {
                 this.instructionText.text = 'Tomato tween complete!'
             }
+        })
+
+        let pearTweenChain = this.tweens.chain({
+            targets: verygoodpear,
+            ease: "Bounce.easeOut",
+            loop: 1,
+            paused: true,
+            tweens: [
+                {
+                    x: w - 64,
+                    duration: 500,
+                },
+                {
+                    duration: 500,
+                    angle: 90
+                },
+                {
+                    y: h - 64,
+                    duration: 1000,
+                    ease: "Sine.easeOut"
+                },
+                {
+                    duration: 500,
+                    angle: 180
+                },
+                {
+                    x: 64,
+                    duration: 1500
+                },
+                {
+                    duration: 500,
+                    angle: -90
+                },
+                {
+                    y: 64,
+                    duration: 1000
+                },
+                {
+                    duration: 500,
+                    angle: 0
+                },
+            ]
+            
+        })
+
+        this.input.on("pointerdown", () => {
+            verygoodpear.setPosition(64, 64);
+            verygoodpear.setAngle(0);
+            pearTweenChain.restart();
         })
 
         // enable scene reload key

@@ -1,6 +1,6 @@
 // Exercise 05: Tiny Tween Chain
-// Name:
-// Date:
+// Name: Vinh Ta
+// Date: assigned 11/20/23, done 11/27/23
 
 // CODE ARMOR
 'use strict'
